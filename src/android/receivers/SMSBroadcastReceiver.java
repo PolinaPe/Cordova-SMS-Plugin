@@ -1,7 +1,7 @@
 package com.ramkumar.cordovaplugins.sms.receivers;
 
 
-import com.ramkumar.cordovaplugins.sms.models;
+import com.ramkumar.cordovaplugins.sms.models.*;
 import org.apache.cordova.PluginResult;
 
 import com.ramkumar.cordovaplugins.sms.CordovaSMS;
