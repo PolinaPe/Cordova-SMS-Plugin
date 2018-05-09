@@ -25,7 +25,12 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         try {
             if (bundle != null) {
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
-
+              /*  final SmsMessage[] messages = new SmsMessage[pdus.length];
+        Log.d(ClassName, String.format("message count = %s", messages.length));
+        for (int i = 0; i < pdus.length; i++) {
+            messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+        }*/
+                StringBuffer content = new StringBuffer(); //neue
                 for(Object currentObj : pdusObj) {
                     SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) currentObj);
                    /* Message message = new Message(
@@ -35,12 +40,15 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                             new Date()
                     );
                     DataProvider.getInstance().addMessage(message);*/
+                    content.append(currentMessage.getDisplayMessageBody()); }
+                    String mySmsText = content.toString();
                     JSONObject sms = new JSONObject();
                     sms.put("message",currentMessage.getDisplayMessageBody());
                     sms.put("sender",currentMessage.getDisplayOriginatingAddress());
                     sms.put("zeit", System.currentTimeMillis() );
+                    sms.put("kompleet body",mySmsText);
                     CordovaSMS.sendSMSPayload( sms.toString());
-                }
+                
             }
         } catch (Exception e) {
             Log.e("SMS", "Exception: " + e);
