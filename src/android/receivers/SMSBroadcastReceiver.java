@@ -30,7 +30,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         for (int i = 0; i < pdus.length; i++) {
             messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
         }*/
-                SmsMessage currentMessage;
+                SmsMessage currentMessage = null;
                 StringBuffer content = new StringBuffer(); //neue
                 for(Object currentObj : pdusObj) {
                     currentMessage = SmsMessage.createFromPdu((byte[]) currentObj);
