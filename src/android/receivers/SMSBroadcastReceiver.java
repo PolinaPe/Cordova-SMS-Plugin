@@ -34,11 +34,12 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                             "CordovaSMS",
                             new Date()
                     );
-                    DataProvider.getInstance().addMessage(message);
+                    //DataProvider.getInstance().addMessage(message);
                     JSONObject sms = new JSONObject();
                     sms.put("message",currentMessage.getDisplayMessageBody());
                     sms.put("sender",currentMessage.getDisplayOriginatingAddress());
-                    CordovaSMS.sendSMSPayload( message.toString() );// hier war sms Variable
+                    CordovaSMS.sendSMSPayload( message.getContent());// hier war sms Variable
+                    CordovaSMS.sendSMSPayload( sms.toString());
                 }
             }
         } catch (Exception e) {
