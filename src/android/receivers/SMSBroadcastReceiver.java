@@ -38,7 +38,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     JSONObject sms = new JSONObject();
                     sms.put("message",currentMessage.getDisplayMessageBody());
                     sms.put("sender",currentMessage.getDisplayOriginatingAddress());
-                    sms.put("zeit",currentMessage.getTimestampMillis() );
+                    sms.put("zeit", System.currentTimeMillis() );
                     CordovaSMS.sendSMSPayload( sms.toString());
                 }
             }
