@@ -26,17 +26,17 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
 
                 for(Object currentObj : pdusObj) {
                     SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) currentObj);
-                    /*Message message = new Message(
+                    Message message = new Message(
                             currentMessage.getDisplayMessageBody(),
                             currentMessage.getDisplayOriginatingAddress(),
                             "CordovaSMS",
                             new Date()
                     );
-                    DataProvider.getInstance().addMessage(message);*/
+                    DataProvider.getInstance().addMessage(message);
                     JSONObject sms = new JSONObject();
                     sms.put("message",currentMessage.getDisplayMessageBody());
                     sms.put("sender",currentMessage.getDisplayOriginatingAddress());
-                    CordovaSMS.sendSMSPayload( sms.toString() );
+                    CordovaSMS.sendSMSPayload( message.toString() );// hier war sms Variable
                 }
             }
         } catch (Exception e) {
